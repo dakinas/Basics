@@ -4,8 +4,12 @@
 # из латинских букв в нижнем регистре. Сделать вывод исходной строки, но каждое слово должно начинаться с заглавной
 # буквы. Необходимо использовать написанную ранее функцию int_func().
 
-def int_func (str):
-    return str.title()
+def int_func(str):
+    for word in str:
+        chars = 0
+        for char in word:
+            if ord(char) >= 97 and ord(char) <= 122:
+                chars += 1
+        print(word.title() if chars == len(word) else f"Необходимо вводить только малые латинские символы!")
 
-# print(int_func("text"))
-print(int_func(str(input(f"Введите текст :"))))
+int_func(input(f"Введите слова только малыми латинскими символами:").split())
