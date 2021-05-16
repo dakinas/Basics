@@ -15,8 +15,11 @@ def sum_string ():
                 exit_mark = True
                 break
             else:
-                result = result + int(numbers[el])
-        overall_result = overall_result + result
+                try:
+                    result += int(numbers[el])
+                except ValueError:
+                    print("Нажмите ! для выхода")
+        overall_result += result
         print(f'Текущий результат: {overall_result}')
     print(f'Общий результат: {overall_result}')
 
