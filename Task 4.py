@@ -3,7 +3,19 @@
 # необходимо обойтись без встроенной функции возведения числа в степень.
 
 def my_func(x , y):
-    return 1 / x ** abs(y)
+    try:
+        x, y = float(x), int(y)
+        if x <=0 or y >=0:
+            print("X должен быть отрицательным, а Y положительным!")
+        else:
+            # return f"Результат возведение числа x в степень y: {round(1 / x ** abs(y), 6)}"
+            result = 1
+            for _ in range(abs(y)):
+                result /= x
+            return f"Результат возведение числа x в степень y: {round(result, 6)}"
+    except ValueError:
+        return "Введите только числа!"
+
 
 # print(my_func(3,-3))
-print(my_func(int(input("Введите действительное положительное число: ")), abs(int(input("Введите целое отрицательное число: ")))))
+print(my_func(input("Введите действительное положительное число: "), input("Введите целое отрицательное число: ")))
