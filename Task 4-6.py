@@ -6,3 +6,20 @@
 # Например, в первом задании выводим целые числа, начиная с 3, а при достижении числа 10 завершаем цикл. Во втором также
 # необходимо предусмотреть условие, при котором повторение элементов списка будет прекращено.
 
+from itertools import count, cycle
+
+print("Cкрипт, генерирующий целые числа, начиная с указанного.\nДля выхода нажмите q")
+for i in count(int(input("Введите начальное число: "))):
+    print(i, end="")
+    quit_char = input()
+    if quit_char == "q":
+        break
+
+print("Cкрипт, повторяющий элементы заданного списка\nДля выхода нажмите q")
+my_list = input("Введите значения списка: ").split()
+repeat = cycle(my_list)
+quit_char = None
+
+while quit_char != "q":
+    print(next(repeat), end='')
+    quit_char = input()
