@@ -7,26 +7,25 @@
 # Результатом сложения должна быть новая матрица.
 # Подсказка: сложение элементов матриц выполнять поэлементно — первый элемент первой строки первой матрицы складываем с
 # первым элементом первой строки второй матрицы и т.д.
-m_1 = [[177, 2715, 3], [3, 2, 1], [4, 4, 4]]
-m_2 = [[154, 232, 553], [3, 2, 1], [4, 4, 4]]
+from random import randint
 
 class Matrix:
     def __init__(self, mtx):
         self.mtx = mtx
 
     def __str__(self):
-        return "\n".join('     '.join([f'{i:5}' for i in line]) for line in self.mtx)
+        return "\n".join('     '.join([f'{el:5}' for el in line]) for line in self.mtx)
 
     def __add__(self, other):
-        try:
-            sum_mtx = [[int(self.mtx[line][i]) + int(other.mtx[line][i]) for i in range(len(self.mtx[line]))] for line in range(len(self.mtx))]
+            sum_mtx = [[int(self.mtx[line][el]) + int(other.mtx[line][el]) for el in range(len(self.mtx[line]))] for line in range(len(self.mtx))]
             return Matrix(sum_mtx)
-        except IndexError:
-            return f"Проверьте разрядность матриц"
 
-matrix_1 = Matrix(m_1)
-matrix_2 = Matrix(m_2)
-new_matrix = matrix_1 + matrix_2
-print(f"Матрица 1:\n{matrix_1}\n")
-print(f"Матрица 2:\n{matrix_2}\n")
-print(f"Сумма матриц:\n{new_matrix}")
+rows = int(input("Введите количество строк матрицы: "))
+columns = int(input("Введите количество столбцов матрицы: "))
+mtx_1 = Matrix([[randint(1, 100) for j in range(rows)] for i in range(columns)])
+mtx_2 = Matrix([[randint(1, 100) for j in range(rows)] for i in range(columns)])
+new_mtx = mtx_1 + mtx_2
+
+print(f"Матрица 1:\n{mtx_1}\n")
+print(f"Матрица 2:\n{mtx_2}\n")
+print(f"Сумма матриц:\n{new_mtx}")
